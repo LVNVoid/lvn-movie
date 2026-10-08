@@ -20,7 +20,6 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
 
   const total = heroMovies.length;
 
-  // Fetch official title logo graphic from TMDB for each movie in the hero carousel
   useEffect(() => {
     let isCancelled = false;
 
@@ -71,8 +70,7 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
 
   return (
     <div
-      className="group relative -mx-4 -mt-20 mb-12 h-[620px] w-screen max-w-none overflow-hidden bg-black sm:-mx-8 sm:h-[720px] lg:-mx-12 lg:h-[820px] xl:-mx-16"
-      style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', width: '100vw' }}
+      className="group relative -mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mb-6 h-[380px] sm:h-[420px] lg:h-[450px] overflow-hidden bg-black"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-roledescription="carousel"
@@ -96,70 +94,69 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
             <img
               src={backdropUrl}
               alt={movie.title}
-              className="h-full w-full object-cover object-center"
+              className="h-full w-full object-cover object-center sm:object-[center_20%]"
               loading={index === 0 ? 'eager' : 'lazy'}
             />
           </div>
         );
       })}
 
-      {/* Fullscreen Vignette Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-transparent sm:via-black/75" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-transparent" />
+      {/* Precision Vignettes: Only darken left side behind typography, leave right side vibrant */}
+      <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/70 to-transparent z-10 pointer-events-none" />
 
-      {/* Content Container (Edge to Edge with Comfortable Padding) */}
-      <div className="relative mx-auto flex h-full w-full max-w-[1920px] flex-col justify-end px-6 pb-14 sm:px-12 sm:pb-16 lg:px-16">
-        <div className="max-w-2xl space-y-4">
+      {/* Hero Content (Positioned cleanly with high contrast above gradients) */}
+      <div className="relative z-20 mx-auto flex h-full w-full max-w-[1920px] flex-col justify-center px-6 pt-12 pb-6 sm:px-12 lg:px-16">
+        <div className="max-w-xl sm:max-w-2xl space-y-2.5">
           {/* Metadata Badges */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="flex items-center gap-1.5 rounded-md bg-primary px-2.5 py-0.5 text-xs font-black tracking-wider text-white shadow-sm shadow-primary/40">
-              TRENDING #{currentIndex + 1}
-            </span>
-            <span className="rounded bg-white/10 px-2 py-0.5 text-[11px] font-bold text-emerald-400 backdrop-blur-md">
-              4K ULTRA HD
+            <span className="flex items-center gap-1.5 rounded-full bg-primary px-3 py-0.5 text-xs font-bold text-white shadow-sm shadow-primary/40">
+              #{currentIndex + 1} Trending Today
             </span>
             <Badge
               variant="secondary"
-              className="flex items-center gap-1.5 bg-black/60 px-2.5 py-0.5 text-xs font-bold text-amber-400 backdrop-blur-md border border-white/10"
+              className="flex items-center gap-1 rounded-full border border-white/10 bg-black/60 px-2.5 py-0.5 text-xs font-bold text-amber-400 backdrop-blur-md"
             >
-              <Star className="size-3.5 fill-amber-400 text-amber-400" />
+              <Star className="size-3 fill-amber-400 text-amber-400" />
               <span>{currentMovie.vote_average.toFixed(1)}</span>
             </Badge>
+            <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-zinc-300 backdrop-blur-md">
+              4K UHD
+            </span>
             {currentMovie.release_date && (
-              <span className="text-xs font-semibold text-zinc-300">
+              <span className="text-xs font-medium text-zinc-400">
                 {new Date(currentMovie.release_date).getFullYear()}
               </span>
             )}
           </div>
 
-          {/* Official Movie Title: uses official logo PNG from TMDB or stylized text fallback */}
-          <div className="min-h-[80px] sm:min-h-[100px] flex items-end">
+          {/* Official Movie Title Logo or Heading */}
+          <div className="py-1 min-h-[56px] sm:min-h-[72px] flex items-center">
             {currentLogo ? (
               <img
                 src={`${envConfig.imageBaseUrl}${currentLogo}`}
                 alt={currentMovie.title}
-                className="max-h-24 sm:max-h-32 md:max-h-36 lg:max-h-40 w-auto max-w-[85%] object-contain drop-shadow-[0_8px_32px_rgba(0,0,0,0.95)]"
+                className="h-12 sm:h-16 lg:h-20 w-auto max-w-[80%] object-contain drop-shadow-[0_8px_30px_rgba(0,0,0,0.95)]"
                 loading="eager"
               />
             ) : (
-              <h2 className="text-3xl font-black tracking-tight text-white drop-shadow-md sm:text-5xl lg:text-6xl">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white drop-shadow-md">
                 {currentMovie.title}
               </h2>
             )}
           </div>
 
           {/* Synopsis */}
-          <p className="line-clamp-2 text-sm text-zinc-300 drop-shadow sm:line-clamp-3 sm:text-base leading-relaxed">
+          <p className="line-clamp-2 text-xs sm:text-sm text-zinc-300 drop-shadow leading-relaxed max-w-lg">
             {currentMovie.overview || 'Synopsis is currently not available.'}
           </p>
 
-          {/* Action CTA Buttons */}
+          {/* CTA Buttons */}
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <Button
               asChild
-              size="lg"
-              className="gap-2 rounded-full bg-gradient-to-r from-[#d50032] to-[#ff3d2e] px-7 font-bold text-white shadow-lg shadow-primary/40 hover:opacity-95"
+              className="gap-2 rounded-full bg-primary px-6 py-2.5 font-bold text-white shadow-lg shadow-primary/30 hover:bg-primary/90 transition-transform hover:scale-105"
             >
               <Link
                 to="/movie/$id"
@@ -172,23 +169,22 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
             <Button
               asChild
               variant="outline"
-              size="lg"
-              className="gap-2 rounded-full border-white/20 bg-black/40 px-6 font-semibold text-white backdrop-blur-md hover:bg-white/10 hover:text-white"
+              className="gap-2 rounded-full border-white/20 bg-black/40 px-5 py-2.5 font-semibold text-white backdrop-blur-md hover:bg-white/10 hover:text-white"
             >
               <Link
                 to="/movie/$id"
                 params={{ id: String(currentMovie.id) }}
               >
                 <Info className="size-4" />
-                <span>More Info</span>
+                <span>Details</span>
               </Link>
             </Button>
           </div>
         </div>
 
-        {/* Carousel Navigation Arrows & Indicators */}
-        <div className="mt-8 flex items-center justify-between">
-          {/* Indicators */}
+        {/* Carousel Bottom Bar: Indicators & Arrows */}
+        <div className="mt-auto flex items-center justify-between pt-4">
+          {/* Progress Indicators */}
           <div className="flex items-center gap-2">
             {heroMovies.map((_, index) => {
               const isActive = index === currentIndex;
@@ -198,7 +194,7 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
                   type="button"
                   onClick={() => setCurrentIndex(index)}
                   aria-label={`Slide ${index + 1}`}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                  className={`h-1 rounded-full transition-all duration-300 ${
                     isActive
                       ? 'w-8 bg-primary'
                       : 'w-2 bg-white/30 hover:bg-white/60'
@@ -208,17 +204,20 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
             })}
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows & Counter */}
           <div className="flex items-center gap-2">
+            <span className="text-xs font-mono text-zinc-400 mr-2">
+              0{currentIndex + 1} / 0{total}
+            </span>
             <Button
               type="button"
               variant="outline"
               size="icon"
               onClick={handlePrev}
               aria-label="Previous slide"
-              className="size-9 rounded-full border-white/10 bg-black/50 text-white backdrop-blur-md hover:border-white/30 hover:bg-black/70 hover:text-white"
+              className="size-8 rounded-full border-white/10 bg-black/50 text-white backdrop-blur-md hover:border-white/30 hover:bg-black/80 hover:text-white"
             >
-              <ChevronLeft className="size-4" />
+              <ChevronLeft className="size-3.5" />
             </Button>
             <Button
               type="button"
@@ -226,9 +225,9 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
               size="icon"
               onClick={handleNext}
               aria-label="Next slide"
-              className="size-9 rounded-full border-white/10 bg-black/50 text-white backdrop-blur-md hover:border-white/30 hover:bg-black/70 hover:text-white"
+              className="size-8 rounded-full border-white/10 bg-black/50 text-white backdrop-blur-md hover:border-white/30 hover:bg-black/80 hover:text-white"
             >
-              <ChevronRight className="size-4" />
+              <ChevronRight className="size-3.5" />
             </Button>
           </div>
         </div>

@@ -47,11 +47,11 @@ export function MovieListPage() {
   const isHomeFirstPage = !debouncedQuery && page === 1;
 
   return (
-    <section className="mx-auto w-full max-w-[1920px] px-6 pb-20 sm:px-10 lg:px-16">
+    <section className="mx-auto w-full max-w-[1920px] px-4 pb-20 sm:px-8 lg:px-12 xl:px-16">
       {/* Skeleton Hero Banner on initial load */}
       {isLoading && isHomeFirstPage && (
-        <div className="-mx-6 -mt-20 mb-12 sm:-mx-10 lg:-mx-16">
-          <Skeleton className="h-[620px] w-full rounded-none sm:h-[720px] lg:h-[820px] bg-[#121214]" />
+        <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mb-8">
+          <Skeleton className="h-[480px] w-full rounded-none sm:h-[520px] lg:h-[560px] bg-[#121214]" />
         </div>
       )}
 
