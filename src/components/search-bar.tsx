@@ -8,7 +8,7 @@ interface SearchBarProps {
 
 export function SearchBar({ value, onChange }: SearchBarProps) {
   return (
-    <div className="relative w-full max-w-md">
+    <div className="relative w-full sm:max-w-xs md:max-w-sm lg:max-w-md">
       <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-zinc-400" />
       <input
         type="text"
@@ -29,7 +29,7 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
           <X className="size-3.5" />
         </Button>
       ) : (
-        <kbd className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400">
+        <kbd className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 hidden sm:inline-block rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400">
           /
         </kbd>
       )}

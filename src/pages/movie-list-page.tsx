@@ -83,8 +83,8 @@ export function MovieListPage() {
           />
         </div>
 
-        {/* Quick Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 pt-1">
+        {/* Quick Filter Pills (Smooth Horizontal Touch Scroll on Mobile & Tablet) */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0">
           {GENRE_QUICK_FILTERS.map((f) => {
             const isSelected =
               (!activeQuery && f.query === '') ||
@@ -96,7 +96,7 @@ export function MovieListPage() {
                 key={f.label}
                 type="button"
                 onClick={() => handleFilterClick(f.query)}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all duration-200 ${
+                className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all duration-200 ${
                   isSelected
                     ? 'bg-primary text-white shadow-md shadow-primary/25'
                     : 'border border-white/10 bg-[#121216] text-zinc-400 hover:border-white/20 hover:text-white'
@@ -111,8 +111,8 @@ export function MovieListPage() {
 
       {/* Grid Skeleton Loading */}
       {isLoading && (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 min-[1800px]:grid-cols-8">
-          {Array.from({ length: 16 }).map((_, index) => (
+        <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 min-[1800px]:grid-cols-7">
+          {Array.from({ length: 14 }).map((_, index) => (
             <div key={index} className="flex flex-col gap-2">
               <Skeleton className="aspect-[2/3] w-full rounded-xl bg-[#121214]" />
               <Skeleton className="h-4 w-3/4 rounded bg-[#121214]" />
@@ -150,7 +150,7 @@ export function MovieListPage() {
       {/* Movie Grid & Pagination */}
       {!isLoading && !error && movies.length > 0 && (
         <>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 min-[1800px]:grid-cols-8">
+          <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 min-[1800px]:grid-cols-7">
             {movies.map((movie) => (
               <MovieCard key={movie.id} movie={movie} />
             ))}

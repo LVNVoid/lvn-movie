@@ -102,61 +102,64 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
       })}
 
       {/* Precision Vignettes: Only darken left side behind typography, leave right side vibrant */}
-      <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 bg-gradient-to-r from-background via-background/90 to-transparent sm:via-background/80 z-10 pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/70 to-transparent z-10 pointer-events-none" />
 
       {/* Hero Content (Positioned cleanly with generous vertical room) */}
-      <div className="relative z-20 mx-auto flex h-full w-full max-w-[1920px] flex-col justify-end px-6 pb-12 sm:px-12 sm:pb-16 lg:px-16">
-        <div className="max-w-xl sm:max-w-2xl space-y-3.5">
-          {/* Metadata Badges */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="flex items-center gap-1.5 rounded-full bg-primary px-3 py-0.5 text-xs font-bold text-white shadow-sm shadow-primary/40">
+      <div className="relative z-20 mx-auto flex h-full w-full max-w-[1920px] flex-col justify-end px-5 pb-8 sm:px-12 sm:pb-16 lg:px-16">
+        <div className="max-w-xl sm:max-w-2xl space-y-3 sm:space-y-3.5">
+          {/* Metadata Badges (Responsive Wrap) */}
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            <span className="flex items-center gap-1.5 rounded-full bg-primary px-2.5 sm:px-3 py-0.5 text-[11px] sm:text-xs font-bold text-white shadow-sm shadow-primary/40">
               #{currentIndex + 1} Trending Today
             </span>
             <Badge
               variant="secondary"
-              className="flex items-center gap-1 rounded-full border border-white/10 bg-black/60 px-2.5 py-0.5 text-xs font-bold text-amber-400 backdrop-blur-md"
+              className="flex items-center gap-1 rounded-full border border-white/10 bg-black/60 px-2 sm:px-2.5 py-0.5 text-[11px] sm:text-xs font-bold text-amber-400 backdrop-blur-md"
             >
               <Star className="size-3 fill-amber-400 text-amber-400" />
               <span>{currentMovie.vote_average.toFixed(1)}</span>
             </Badge>
-            <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-zinc-300 backdrop-blur-md">
+            <span className="rounded-full border border-white/10 bg-white/5 px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-medium text-zinc-300 backdrop-blur-md">
               4K UHD
             </span>
             {currentMovie.release_date && (
-              <span className="text-xs font-medium text-zinc-400">
+              <span className="rounded-full border border-white/10 bg-white/5 px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-medium text-zinc-300 backdrop-blur-md">
                 {new Date(currentMovie.release_date).getFullYear()}
               </span>
             )}
           </div>
 
           {/* Official Movie Title Logo or Heading */}
-          <div className="py-1 min-h-[64px] sm:min-h-[84px] flex items-center">
+          <div className="py-0.5 min-h-[50px] sm:min-h-[84px] flex items-center">
             {currentLogo ? (
               <img
                 src={`${envConfig.imageBaseUrl}${currentLogo}`}
                 alt={currentMovie.title}
-                className="h-16 sm:h-22 lg:h-28 w-auto max-w-[85%] object-contain drop-shadow-[0_8px_30px_rgba(0,0,0,0.95)]"
+                onError={() =>
+                  setMovieLogos((prev) => ({ ...prev, [currentMovie.id]: null }))
+                }
+                className="h-12 sm:h-20 lg:h-26 w-auto max-w-[85%] object-contain drop-shadow-[0_8px_30px_rgba(0,0,0,0.95)]"
                 loading="eager"
               />
             ) : (
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white drop-shadow-md">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white drop-shadow-md">
                 {currentMovie.title}
               </h2>
             )}
           </div>
 
           {/* Synopsis */}
-          <p className="line-clamp-2 text-xs sm:text-sm text-zinc-300 drop-shadow leading-relaxed max-w-lg">
+          <p className="line-clamp-2 sm:line-clamp-3 text-xs sm:text-sm text-zinc-300 drop-shadow leading-relaxed max-w-lg">
             {currentMovie.overview || 'Synopsis is currently not available.'}
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center gap-3 pt-2">
+          {/* CTA Buttons (Mobile Responsive Sizing) */}
+          <div className="flex items-center gap-2.5 sm:gap-3 pt-1.5 w-full sm:w-auto">
             <Button
               asChild
-              className="gap-2 rounded-full bg-primary px-6 py-2.5 font-bold text-white shadow-lg shadow-primary/30 hover:bg-primary/90 transition-transform hover:scale-105"
+              className="flex-1 sm:flex-initial gap-2 rounded-full bg-primary px-6 py-2.5 min-h-[44px] font-bold text-white shadow-lg shadow-primary/30 hover:bg-primary/90 transition-transform active:scale-95 sm:hover:scale-105"
             >
               <Link
                 to="/movie/$id"
@@ -169,7 +172,7 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
             <Button
               asChild
               variant="outline"
-              className="gap-2 rounded-full border-white/20 bg-black/40 px-5 py-2.5 font-semibold text-white backdrop-blur-md hover:bg-white/10 hover:text-white"
+              className="flex-1 sm:flex-initial gap-2 rounded-full border-white/20 bg-black/40 px-5 py-2.5 min-h-[44px] font-semibold text-white backdrop-blur-md hover:bg-white/10 hover:text-white active:scale-95"
             >
               <Link
                 to="/movie/$id"
@@ -182,10 +185,10 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
           </div>
         </div>
 
-        {/* Carousel Bottom Bar: Indicators & Arrows */}
-        <div className="mt-6 flex items-center justify-between">
+        {/* Carousel Bottom Bar: Indicators & Responsive Arrows */}
+        <div className="mt-5 sm:mt-6 flex items-center justify-between">
           {/* Progress Indicators */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {heroMovies.map((_, index) => {
               const isActive = index === currentIndex;
               return (
@@ -196,7 +199,7 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
                   aria-label={`Slide ${index + 1}`}
                   className={`h-1 rounded-full transition-all duration-300 ${
                     isActive
-                      ? 'w-8 bg-primary'
+                      ? 'w-6 sm:w-8 bg-primary'
                       : 'w-2 bg-white/30 hover:bg-white/60'
                   }`}
                 />
@@ -204,8 +207,8 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
             })}
           </div>
 
-          {/* Navigation Arrows & Counter */}
-          <div className="flex items-center gap-2">
+          {/* Navigation Arrows & Counter: Hidden on small mobile to eliminate clutter */}
+          <div className="hidden sm:flex items-center gap-2">
             <span className="text-xs font-mono text-zinc-400 mr-2">
               0{currentIndex + 1} / 0{total}
             </span>

@@ -78,7 +78,7 @@ export function MovieDetailPage() {
         </div>
       )}
 
-      <div className="relative mx-auto w-full max-w-[1920px] px-6 pt-4 sm:px-10 lg:px-16">
+      <div className="relative mx-auto w-full max-w-[1920px] px-4 pt-4 sm:px-10 lg:px-16">
         <Button
           variant="ghost"
           size="sm"
@@ -94,7 +94,7 @@ export function MovieDetailPage() {
         <div className="grid gap-8 md:grid-cols-[300px_1fr] lg:grid-cols-[340px_1fr] lg:gap-12">
           {/* Left Column: Poster & Action Buttons */}
           <div className="flex flex-col gap-4">
-            <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-[#0c0c0e] shadow-2xl shadow-black">
+            <div className="group relative mx-auto max-w-[280px] sm:max-w-none w-full overflow-hidden rounded-xl border border-white/10 bg-[#0c0c0e] shadow-2xl shadow-black">
               <img
                 src={posterUrl}
                 alt={movie.title}
@@ -104,7 +104,7 @@ export function MovieDetailPage() {
 
             <Button
               size="lg"
-              className="gap-2 rounded-xl bg-gradient-to-r from-[#d50032] to-[#ff3d2e] py-6 font-bold text-white shadow-lg shadow-primary/30 hover:opacity-95"
+              className="gap-2 rounded-xl bg-gradient-to-r from-[#d50032] to-[#ff3d2e] py-6 min-h-[48px] font-bold text-white shadow-lg shadow-primary/30 hover:opacity-95"
             >
               <Play className="size-5 fill-white" />
               <span>Watch Now</span>

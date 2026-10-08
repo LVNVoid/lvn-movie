@@ -35,13 +35,13 @@ export function MovieCard({ movie }: MovieCardProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#101014] via-transparent to-black/20" />
 
         {/* Quality Tag (Top Left) */}
-        <div className="absolute left-2.5 top-2.5 rounded bg-emerald-600/90 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-white shadow-sm backdrop-blur-sm">
+        <div className="absolute left-2 top-2 rounded bg-emerald-600/90 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-white shadow-sm backdrop-blur-sm">
           HD
         </div>
 
         {/* Rating Badge (Top Right) */}
-        <div className="absolute right-2.5 top-2.5 flex items-center gap-1 rounded-full border border-white/10 bg-black/75 px-2 py-0.5 text-[11px] font-bold text-amber-400 backdrop-blur-md">
-          <Star className="size-3 fill-amber-400 text-amber-400" />
+        <div className="absolute right-2 top-2 flex items-center gap-1 rounded-full border border-white/10 bg-black/75 px-1.5 py-0.5 text-[10px] font-bold text-amber-400 backdrop-blur-md">
+          <Star className="size-2.5 fill-amber-400 text-amber-400" />
           <span>{movie.vote_average.toFixed(1)}</span>
         </div>
 
@@ -54,10 +54,12 @@ export function MovieCard({ movie }: MovieCardProps) {
       </div>
 
       {/* Movie Information Caption */}
-      <div className="flex flex-1 flex-col justify-between p-3.5 gap-2">
-        <h3 className="line-clamp-2 text-sm font-semibold text-zinc-100 transition-colors duration-200 group-hover:text-primary leading-snug">
-          {movie.title}
-        </h3>
+      <div className="flex flex-1 flex-col justify-between p-3 sm:p-3.5 gap-2">
+        <div className="h-10 flex items-start">
+          <h3 className="line-clamp-2 text-xs sm:text-sm font-semibold text-zinc-100 transition-colors duration-200 group-hover:text-primary leading-snug">
+            {movie.title}
+          </h3>
+        </div>
         <div className="flex items-center justify-between text-xs text-zinc-400">
           <span className="font-medium text-zinc-400">{releaseYear}</span>
           <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-zinc-300">
