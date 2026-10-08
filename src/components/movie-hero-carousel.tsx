@@ -70,7 +70,7 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
 
   return (
     <div
-      className="group relative -mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 -mt-16 mb-8 h-[440px] sm:h-[480px] lg:h-[510px] overflow-hidden bg-black"
+      className="group relative -mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 -mt-16 mb-10 h-[520px] sm:h-[580px] lg:h-[640px] overflow-hidden bg-black"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-roledescription="carousel"
@@ -103,12 +103,12 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
 
       {/* Precision Vignettes: Only darken left side behind typography, leave right side vibrant */}
       <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/70 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/70 to-transparent z-10 pointer-events-none" />
 
-      {/* Hero Content (Positioned cleanly with high contrast above gradients) */}
-      <div className="relative z-20 mx-auto flex h-full w-full max-w-[1920px] flex-col justify-center px-6 pt-12 pb-6 sm:px-12 lg:px-16">
-        <div className="max-w-xl sm:max-w-2xl space-y-2.5">
+      {/* Hero Content (Positioned cleanly with generous vertical room) */}
+      <div className="relative z-20 mx-auto flex h-full w-full max-w-[1920px] flex-col justify-end px-6 pb-12 sm:px-12 sm:pb-16 lg:px-16">
+        <div className="max-w-xl sm:max-w-2xl space-y-3.5">
           {/* Metadata Badges */}
           <div className="flex flex-wrap items-center gap-2">
             <span className="flex items-center gap-1.5 rounded-full bg-primary px-3 py-0.5 text-xs font-bold text-white shadow-sm shadow-primary/40">
@@ -132,16 +132,16 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
           </div>
 
           {/* Official Movie Title Logo or Heading */}
-          <div className="py-1 min-h-[56px] sm:min-h-[72px] flex items-center">
+          <div className="py-1 min-h-[64px] sm:min-h-[84px] flex items-center">
             {currentLogo ? (
               <img
                 src={`${envConfig.imageBaseUrl}${currentLogo}`}
                 alt={currentMovie.title}
-                className="h-12 sm:h-16 lg:h-20 w-auto max-w-[80%] object-contain drop-shadow-[0_8px_30px_rgba(0,0,0,0.95)]"
+                className="h-16 sm:h-22 lg:h-28 w-auto max-w-[85%] object-contain drop-shadow-[0_8px_30px_rgba(0,0,0,0.95)]"
                 loading="eager"
               />
             ) : (
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white drop-shadow-md">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white drop-shadow-md">
                 {currentMovie.title}
               </h2>
             )}
@@ -183,7 +183,7 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
         </div>
 
         {/* Carousel Bottom Bar: Indicators & Arrows */}
-        <div className="mt-auto flex items-center justify-between pt-4">
+        <div className="mt-6 flex items-center justify-between">
           {/* Progress Indicators */}
           <div className="flex items-center gap-2">
             {heroMovies.map((_, index) => {
