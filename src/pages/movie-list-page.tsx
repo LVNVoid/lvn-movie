@@ -50,8 +50,8 @@ export function MovieListPage() {
     <section className="mx-auto w-full max-w-[1920px] px-4 pb-20 sm:px-8 lg:px-12 xl:px-16">
       {/* Skeleton Hero Banner on initial load */}
       {isLoading && isHomeFirstPage && (
-        <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mb-8">
-          <Skeleton className="h-[480px] w-full rounded-none sm:h-[520px] lg:h-[560px] bg-[#121214]" />
+        <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 -mt-16 mb-8">
+          <Skeleton className="h-[440px] w-full rounded-none sm:h-[480px] lg:h-[510px] bg-[#121214]" />
         </div>
       )}
 

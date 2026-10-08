@@ -70,7 +70,7 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
 
   return (
     <div
-      className="group relative -mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mb-6 h-[380px] sm:h-[420px] lg:h-[450px] overflow-hidden bg-black"
+      className="group relative -mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 -mt-16 mb-8 h-[440px] sm:h-[480px] lg:h-[510px] overflow-hidden bg-black"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-roledescription="carousel"
