@@ -1,0 +1,17 @@
+services:
+  lvn-movie:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_TMDB_API_URL: ${VITE_TMDB_API_URL:-https://api.themoviedb.org/3}
+        VITE_TMDB_ACCESS_TOKEN: ${VITE_TMDB_ACCESS_TOKEN:-}
+        VITE_TMDB_IMAGE_BASE_URL: ${VITE_TMDB_IMAGE_BASE_URL:-https://image.tmdb.org/t/p/w500}
+        VITE_TMDB_BACKDROP_BASE_URL: ${VITE_TMDB_BACKDROP_BASE_URL:-https://image.tmdb.org/t/p/original}
+    container_name: lvn-movie
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:80"
+    env_file:
+      - path: .env
+        required: false

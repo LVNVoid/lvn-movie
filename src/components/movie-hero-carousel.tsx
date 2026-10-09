@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { ChevronLeft, ChevronRight, Info, Play, Star } from 'lucide-react';
 import { envConfig } from '@/constants/config';
@@ -12,7 +12,10 @@ interface MovieHeroCarouselProps {
 }
 
 export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
-  const heroMovies = movies.filter((m) => Boolean(m.backdrop_path)).slice(0, 5);
+  const heroMovies = useMemo(
+    () => movies.filter((m) => Boolean(m.backdrop_path)).slice(0, 5),
+    [movies],
+  );
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -43,7 +46,7 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
     return () => {
       isCancelled = true;
     };
-  }, [movies]);
+  }, [heroMovies]);
 
   useEffect(() => {
     if (total <= 1 || isPaused) return;

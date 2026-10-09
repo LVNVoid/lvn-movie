@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AlertCircle, Film } from 'lucide-react';
 import { useMovies } from '@/hooks/use-movie';
 import { useDebounce } from '@/hooks/use-debounce';
@@ -30,9 +30,11 @@ export function MovieListPage() {
     page,
   );
 
-  useEffect(() => {
+  const [prevQuery, setPrevQuery] = useState(debouncedQuery);
+  if (prevQuery !== debouncedQuery) {
+    setPrevQuery(debouncedQuery);
     setPage(1);
-  }, [debouncedQuery]);
+  }
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
