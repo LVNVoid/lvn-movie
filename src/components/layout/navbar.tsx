@@ -17,7 +17,9 @@ export function Navbar() {
 
   const handleSearchClick = () => {
     setIsMobileMenuOpen(false);
-    const searchInput = document.querySelector('input[type="text"]') as HTMLInputElement;
+    const searchInput = document.querySelector(
+      'input[type="text"]',
+    ) as HTMLInputElement;
     if (searchInput) {
       searchInput.focus();
       searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -44,14 +46,14 @@ export function Navbar() {
             </div>
             <div className="flex items-baseline gap-1">
               <span className="font-black tracking-tight text-white">LVN</span>
-              <span className="text-[11px] font-extrabold tracking-widest text-zinc-400">
-                CINEMA
-              </span>
             </div>
           </Link>
 
           {/* Navigation Links: Visible on large screens */}
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main Navigation">
+          <nav
+            className="hidden items-center gap-1 lg:flex"
+            aria-label="Main Navigation"
+          >
             <Link
               to="/"
               className="rounded-full px-3.5 py-1.5 text-xs font-semibold text-white transition hover:bg-white/10"

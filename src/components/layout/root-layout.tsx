@@ -21,11 +21,9 @@ export function RootLayout() {
             <div className="flex flex-col items-center gap-2 md:items-start">
               <div className="flex items-center gap-2">
                 <span className="flex size-6 items-center justify-center rounded-md bg-primary text-[10px] font-black text-white">
-                  LV
+                  LVN
                 </span>
-                <span className="text-base font-black tracking-tight text-white">
-                  LVN CINEMA
-                </span>
+                <span className="text-base font-black tracking-tight text-white"></span>
               </div>
               <p className="text-xs text-zinc-400 max-w-sm text-center md:text-left">
                 Curated cinema discovery powered by TMDB API.
@@ -34,9 +32,9 @@ export function RootLayout() {
 
             {/* Disclaimer */}
             <p className="max-w-xl text-center text-xs leading-relaxed text-zinc-400 md:text-left">
-              LVN Movie does not host, store, or distribute any media files. All content is
-              automatically retrieved from third-party services on the internet using the TMDB API
-              as a metadata information source.
+              LVN Movie does not host, store, or distribute any media files. All
+              content is automatically retrieved from third-party services on
+              the internet using the TMDB API as a metadata information source.
             </p>
 
             {/* Community Links */}
