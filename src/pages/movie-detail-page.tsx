@@ -22,7 +22,7 @@ export function MovieDetailPage() {
       <div className="relative mx-auto w-full max-w-[1920px] px-4 -mt-16 pt-16 pb-16 sm:px-10 lg:px-16">
         <Skeleton className="hidden sm:block mb-6 mt-4 h-9 w-24 rounded-full bg-[#121214]" />
         <div className="grid gap-8 md:grid-cols-[300px_1fr] lg:gap-10">
-          <Skeleton className="aspect-[16/10] sm:aspect-[2/3] -mx-4 -mt-16 sm:mx-0 sm:mt-0 w-auto sm:w-full rounded-none sm:rounded-xl bg-[#121214]" />
+          <Skeleton className="aspect-[2/3] -mx-4 -mt-16 sm:mx-0 sm:mt-0 w-auto sm:w-full rounded-none sm:rounded-xl bg-[#121214]" />
           <div className="flex flex-col gap-4">
             <Skeleton className="h-10 w-3/4 rounded-lg bg-[#121214]" />
             <Skeleton className="h-5 w-1/2 rounded bg-[#121214]" />
@@ -113,19 +113,14 @@ export function MovieDetailPage() {
               {/* Mobile Top Vignette for Transparent Header Legibility */}
               <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/80 via-black/40 to-transparent sm:hidden pointer-events-none z-10" />
 
-              <picture>
-                {backdropUrl && (
-                  <source media="(max-width: 639px)" srcSet={backdropUrl} />
-                )}
-                <img
-                  src={posterUrl}
-                  alt={movie.title}
-                  className="aspect-[16/10] sm:aspect-[2/3] w-full object-cover object-top sm:object-center"
-                />
-              </picture>
+              <img
+                src={posterUrl}
+                alt={movie.title}
+                className="aspect-[2/3] w-full object-cover object-center"
+              />
 
               {/* Mobile Subtle Bottom Gradient into Background */}
-              <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background via-background/60 to-transparent sm:hidden" />
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background via-background/60 to-transparent sm:hidden" />
             </div>
 
             <Button
