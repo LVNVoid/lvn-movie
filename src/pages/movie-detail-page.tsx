@@ -4,7 +4,6 @@ import {
   Calendar,
   Clock,
   Play,
-  Server,
   Star,
   Tv,
 } from 'lucide-react';
@@ -121,36 +120,6 @@ export function MovieDetailPage() {
 
               {/* Mobile Subtle Bottom Gradient into Background */}
               <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background via-background/60 to-transparent sm:hidden" />
-            </div>
-
-            <Button
-              size="lg"
-              className="gap-2 rounded-xl bg-gradient-to-r from-[#d50032] to-[#ff3d2e] py-6 min-h-[48px] font-bold text-white shadow-lg shadow-primary/30 hover:opacity-95"
-            >
-              <Play className="size-5 fill-white" />
-              <span>Watch Now</span>
-            </Button>
-
-            {/* Server Selectors */}
-            <div className="rounded-xl border border-white/5 bg-[#0e0e11] p-3.5">
-              <div className="mb-2.5 flex items-center gap-1.5 text-xs font-bold text-zinc-400">
-                <Server className="size-3.5 text-primary" />
-                <span>CHOOSE STREAMING SERVER</span>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <button
-                  type="button"
-                  className="rounded-lg border border-primary/40 bg-primary/10 py-2 font-semibold text-white transition hover:bg-primary/20"
-                >
-                  Server 1 (VIP)
-                </button>
-                <button
-                  type="button"
-                  className="rounded-lg border border-white/5 bg-white/5 py-2 font-medium text-zinc-400 transition hover:bg-white/10 hover:text-white"
-                >
-                  Server 2 (Fast)
-                </button>
-              </div>
             </div>
           </div>
 
