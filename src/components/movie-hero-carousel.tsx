@@ -104,10 +104,10 @@ export function MovieHeroCarousel({ movies }: MovieHeroCarouselProps) {
         );
       })}
 
-      {/* Precision Vignettes: Only darken left side behind typography, leave right side vibrant */}
-      <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 bg-gradient-to-r from-background via-background/90 to-transparent sm:via-background/80 z-10 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/70 to-transparent z-10 pointer-events-none" />
+      {/* Precision Vignettes: Only subtle bottom fade on mobile for title contrast, leave full banner visible */}
+      <div className="hidden sm:block absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-28 sm:h-44 bg-gradient-to-t from-background via-background/60 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-16 sm:h-28 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none" />
 
       {/* Hero Content (Positioned cleanly with generous vertical room) */}
       <div className="relative z-20 mx-auto flex h-full w-full max-w-[1920px] flex-col justify-end px-5 pb-8 sm:px-12 sm:pb-16 lg:px-16">
