@@ -19,10 +19,10 @@ export function MovieDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="mx-auto w-full max-w-[1920px] px-6 py-8 sm:px-10 lg:px-16">
-        <Skeleton className="mb-6 h-9 w-24 rounded-full bg-[#121214]" />
+      <div className="mx-auto w-full max-w-[1920px] px-4 py-8 sm:px-10 lg:px-16">
+        <Skeleton className="hidden sm:block mb-6 h-9 w-24 rounded-full bg-[#121214]" />
         <div className="grid gap-8 md:grid-cols-[300px_1fr] lg:gap-10">
-          <Skeleton className="aspect-[2/3] w-full rounded-xl bg-[#121214]" />
+          <Skeleton className="aspect-[16/10] sm:aspect-[2/3] -mx-4 -mt-8 sm:mx-0 sm:mt-0 w-auto sm:w-full rounded-none sm:rounded-xl bg-[#121214]" />
           <div className="flex flex-col gap-4">
             <Skeleton className="h-10 w-3/4 rounded-lg bg-[#121214]" />
             <Skeleton className="h-5 w-1/2 rounded bg-[#121214]" />
@@ -83,7 +83,7 @@ export function MovieDetailPage() {
           variant="ghost"
           size="sm"
           asChild
-          className="-ml-2 mb-6 rounded-full text-zinc-400 hover:bg-white/10 hover:text-white"
+          className="hidden sm:inline-flex -ml-2 mb-6 rounded-full text-zinc-400 hover:bg-white/10 hover:text-white"
         >
           <Link to="/">
             <ArrowLeft className="size-4" />
@@ -92,14 +92,37 @@ export function MovieDetailPage() {
         </Button>
 
         <div className="grid gap-8 md:grid-cols-[300px_1fr] lg:grid-cols-[340px_1fr] lg:gap-12">
-          {/* Left Column: Poster & Action Buttons */}
+          {/* Left Column: Poster / Banner & Action Buttons */}
           <div className="flex flex-col gap-4">
-            <div className="group relative mx-auto max-w-[280px] sm:max-w-none w-full overflow-hidden rounded-xl border border-white/10 bg-[#0c0c0e] shadow-2xl shadow-black">
-              <img
-                src={posterUrl}
-                alt={movie.title}
-                className="w-full object-cover"
-              />
+            <div className="group relative -mx-4 -mt-4 sm:mx-0 sm:mt-0 w-auto sm:w-full overflow-hidden rounded-none border-0 bg-[#0c0c0e] shadow-none sm:rounded-xl sm:border sm:border-white/10 sm:shadow-2xl sm:shadow-black">
+              {/* Mobile Floating Back Button over Banner */}
+              <div className="absolute left-4 top-4 z-20 sm:hidden">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="size-9 rounded-full border-white/15 bg-black/60 p-0 text-white backdrop-blur-md hover:bg-black/80"
+                >
+                  <Link to="/">
+                    <ArrowLeft className="size-4" />
+                    <span className="sr-only">Back</span>
+                  </Link>
+                </Button>
+              </div>
+
+              <picture>
+                {backdropUrl && (
+                  <source media="(max-width: 639px)" srcSet={backdropUrl} />
+                )}
+                <img
+                  src={posterUrl}
+                  alt={movie.title}
+                  className="aspect-[16/10] sm:aspect-[2/3] w-full object-cover object-top sm:object-center"
+                />
+              </picture>
+
+              {/* Mobile Subtle Bottom Gradient into Background */}
+              <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background via-background/60 to-transparent sm:hidden" />
             </div>
 
             <Button
