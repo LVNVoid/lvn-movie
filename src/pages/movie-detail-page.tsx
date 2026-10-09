@@ -19,10 +19,10 @@ export function MovieDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="mx-auto w-full max-w-[1920px] px-4 py-8 sm:px-10 lg:px-16">
-        <Skeleton className="hidden sm:block mb-6 h-9 w-24 rounded-full bg-[#121214]" />
+      <div className="relative mx-auto w-full max-w-[1920px] px-4 -mt-16 pt-16 pb-16 sm:px-10 lg:px-16">
+        <Skeleton className="hidden sm:block mb-6 mt-4 h-9 w-24 rounded-full bg-[#121214]" />
         <div className="grid gap-8 md:grid-cols-[300px_1fr] lg:gap-10">
-          <Skeleton className="aspect-[16/10] sm:aspect-[2/3] -mx-4 -mt-8 sm:mx-0 sm:mt-0 w-auto sm:w-full rounded-none sm:rounded-xl bg-[#121214]" />
+          <Skeleton className="aspect-[16/10] sm:aspect-[2/3] -mx-4 -mt-16 sm:mx-0 sm:mt-0 w-auto sm:w-full rounded-none sm:rounded-xl bg-[#121214]" />
           <div className="flex flex-col gap-4">
             <Skeleton className="h-10 w-3/4 rounded-lg bg-[#121214]" />
             <Skeleton className="h-5 w-1/2 rounded bg-[#121214]" />
@@ -64,21 +64,21 @@ export function MovieDetailPage() {
     : null;
 
   return (
-    <div className="relative pb-16">
+    <div className="relative pb-16 -mt-16">
       {/* Background Backdrop Blur Banner */}
       {backdropUrl && (
-        <div className="absolute inset-0 -top-20 h-[500px] w-full overflow-hidden opacity-25">
+        <div className="absolute inset-0 top-0 h-[560px] w-full overflow-hidden opacity-30">
           <img
             src={backdropUrl}
             alt=""
             className="h-full w-full object-cover object-top blur-md"
             aria-hidden="true"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-background" />
         </div>
       )}
 
-      <div className="relative mx-auto w-full max-w-[1920px] px-4 pt-4 sm:px-10 lg:px-16">
+      <div className="relative mx-auto w-full max-w-[1920px] px-4 pt-16 sm:pt-20 sm:px-10 lg:px-16">
         <Button
           variant="ghost"
           size="sm"
@@ -94,9 +94,9 @@ export function MovieDetailPage() {
         <div className="grid gap-8 md:grid-cols-[300px_1fr] lg:grid-cols-[340px_1fr] lg:gap-12">
           {/* Left Column: Poster / Banner & Action Buttons */}
           <div className="flex flex-col gap-4">
-            <div className="group relative -mx-4 -mt-4 sm:mx-0 sm:mt-0 w-auto sm:w-full overflow-hidden rounded-none border-0 bg-[#0c0c0e] shadow-none sm:rounded-xl sm:border sm:border-white/10 sm:shadow-2xl sm:shadow-black">
+            <div className="group relative -mx-4 -mt-16 sm:mx-0 sm:mt-0 w-auto sm:w-full overflow-hidden rounded-none border-0 bg-[#0c0c0e] shadow-none sm:rounded-xl sm:border sm:border-white/10 sm:shadow-2xl sm:shadow-black">
               {/* Mobile Floating Back Button over Banner */}
-              <div className="absolute left-4 top-4 z-20 sm:hidden">
+              <div className="absolute left-4 top-20 z-20 sm:hidden">
                 <Button
                   variant="outline"
                   size="sm"
@@ -109,6 +109,9 @@ export function MovieDetailPage() {
                   </Link>
                 </Button>
               </div>
+
+              {/* Mobile Top Vignette for Transparent Header Legibility */}
+              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/80 via-black/40 to-transparent sm:hidden pointer-events-none z-10" />
 
               <picture>
                 {backdropUrl && (
